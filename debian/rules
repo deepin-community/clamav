@@ -1,4 +1,168 @@
-#!/usr/bin/make -f
+#! /usr/bin/make -f
+
+# Comment this out to turn off verbose mode.
+#export DH_VERBOSE=1
+
+# Automake 1.14 warns about not using subdir-objects,
+# but using this option breaks the build, see:
+#    http://debbugs.gnu.org/cgi/bugreport.cgi?bug=16375
+#    http://debbugs.gnu.org/cgi/bugreport.cgi?bug=13928
+# The following variables can be used to override the automake/aclocal versions.
+#export AUTOMAKE = automake
+#export ACLOCAL = aclocal
+include /usr/share/dpkg/pkg-info.mk
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+# This is needed to work around arch-specific quirks in the test suite.
+DEB_HOST_ARCH ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
+
+# Get the hardening build flags and enable all compiler warnings:
+CFLAGS   := $(shell dpkg-buildflags --get CFLAGS) -Wall -D_FILE_OFFSET_BITS=64
+CXXFLAGS := $(shell dpkg-buildflags --get CXXFLAGS) -Wall -D_FILE_OFFSET_BITS=64
+CPPFLAGS := $(shell dpkg-buildflags --get CPPFLAGS)
+LDFLAGS  := $(shell dpkg-buildflags --get LDFLAGS) -Wl,--as-needed
+
+# LLVM is only used on these archs, so no point in enabling it elsewhere
+# To add new llvm/jit archs add it here and to the arch list for llvm-dev in
+# debian/control.
+# PowerPC is disabled until atleast llvm-3.8. As thing stand now MCJIT is
+# broken in llvm-3.6.
+# Currently LLVM is disabled because there is no support for llvm > 3.8
+#ifeq (,$(filter $(DEB_HOST_ARCH), i386 amd64 kfreebsd-amd64 kfreebsd-i386))
+#  SYSTEM_LLVM := -DBYTECODE_RUNTIME=llvm
+#else
+   SYSTEM_LLVM := -DBYTECODE_RUNTIME=interpreter
+#endif
+#
+# Enable debug code, if nostrip was given.
+ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
+	INSTALL_PROGRAM += -s
+	DEBUG_OPTS =
+else
+	DEBUG_OPTS = -DCMAKE_BUILD_TYPE=Debug
+endif
+
+# Set the configure options:
+#	* add the build flags
+#	* set various paths
+CONFIG := -DENABLE_EXTERNAL_MSPACK=ON -DENABLE_UNRAR=OFF -DENABLE_EXTERNAL_TOMFASTMATH=ON \
+	-DAPP_CONFIG_DIRECTORY=/etc/clamav -DDATABASE_DIRECTORY=/var/lib/clamav \
+	-DENABLE_DOXYGEN=ON -DSYSTEMD_UNIT_DIR=/lib/systemd/system -DDO_NOT_SET_RPATH=ON \
+	$(SYSTEM_LLVM) \
+	$(DEBUG_OPTS)
 
 %:
 	dh $@
+
+override_dh_auto_configure:
+	$(info DEB_BUILD_OPTIONS = $(DEB_BUILD_OPTIONS))
+	$(info CFLAGS = $(CFLAGS))
+	$(info CXXFLAGS = $(CXXFLAGS))
+	$(info CPPFLAGS = $(CPPFLAGS))
+	$(info LDFLAGS = $(LDFLAGS))
+	# Check for unknown options in the configuration files.
+	egrep '^#[[:alpha:]]' etc/clamd.conf.sample | sed -e 's/^#//' | awk '{print $$1}' | while read opt; do \
+	  if ! grep -q "$${opt}" debian/clamav-daemon.postinst.in ; then \
+	    echo "Unhandled option(clamd.conf): $${opt}"; \
+	    touch debian/exit; \
+	  fi;\
+	done; \
+	egrep '^#[[:alpha:]]' etc/freshclam.conf.sample | sed -e 's/^#//' | awk '{print $$1}' | while read opt; do \
+	  if ! grep -q "$${opt}" debian/clamav-freshclam.postinst.in ; then \
+	    echo "Unhandled option (freshclam.conf): $${opt}"; \
+	    touch debian/exit; \
+	  fi;\
+	done; \
+	egrep '^#[[:alpha:]]' etc/clamav-milter.conf.sample | sed -e 's/^#//' | awk '{print $$1}' | while read opt; do \
+	  if ! grep -q "$${opt}" debian/clamav-milter.postinst.in ; then \
+	    echo "Unhandled option (clamav-milter.conf): $${opt}"; \
+	    touch debian/exit; \
+	  fi;\
+	done; \
+	# Check for library features which may have been upgraded.
+	if ! grep -q "CL_FLEVEL 163" libclamav/others.h ; then \
+		echo "cl_retflevel needs boosting in symbol file"; \
+		touch debian/exit; \
+	fi;
+	sed "s/ \(.*\)@CLAMAV_PRIVATE .*/ \1@CLAMAV_PRIVATE $(shell echo $(DEB_VERSION) | cut -d+ -f1)/" \
+		< debian/libclamav11.symbols > debian/libclamav11.symbols.latest
+	if ! cmp debian/libclamav11.symbols debian/libclamav11.symbols.latest; then \
+		echo "Need to update CLAMAV_PRIVATE symbols"; \
+		touch debian/exit; \
+	fi;
+
+	[ ! -f debian/exit ] || (rm debian/exit && exit 1)
+	rm debian/libclamav11.symbols.latest
+
+	# Configure using the specified flags.
+	dh_auto_configure -- $(CONFIG)
+
+override_dh_auto_clean:
+	# Update .po files for debconf.
+	debconf-updatepo
+	dh_auto_clean
+	rm -f debian/clamav-daemon.install.$(DEB_HOST_ARCH_OS) debian/clamav-daemon.manpages.$(DEB_HOST_ARCH_OS)
+	rm -rf unit_tests/clamscan/__pycache__
+	rm -rf unit_tests/__pycache__
+	rm -rf unit_tests/.pytest_cache
+
+clamav_build-indep:
+	# Add common functions in config and postinst files.
+	perl -pe 's~#COMMON-FUNCTIONS#~qx{cat debian/common_functions}~eg' < debian/clamav-base.postinst.in > debian/clamav-base.postinst
+
+clamav_build-arch:
+	# Add common functions in config and postinst files.
+	perl -pe 's~#COMMON-FUNCTIONS#~qx{cat debian/common_functions}~eg' < debian/clamav-milter.init.in > debian/clamav-milter.init
+	perl -pe 's~#COMMON-FUNCTIONS#~qx{cat debian/common_functions}~eg' < debian/clamav-milter.config.in > debian/clamav-milter.config
+	perl -pe 's~#COMMON-FUNCTIONS#~qx{cat debian/common_functions}~eg' < debian/clamav-milter.postinst.in > debian/clamav-milter.postinst
+	perl -pe 's~#COMMON-FUNCTIONS#~qx{cat debian/common_functions}~eg' < debian/clamav-daemon.config.in > debian/clamav-daemon.config
+	perl -pe 's~#COMMON-FUNCTIONS#~qx{cat debian/common_functions}~eg' < debian/clamav-daemon.postinst.in > debian/clamav-daemon.postinst
+	perl -pe 's~#COMMON-FUNCTIONS#~qx{cat debian/common_functions}~eg' < debian/clamav-daemon.init.in > debian/clamav-daemon.init
+	perl -pe 's~#COMMON-FUNCTIONS#~qx{cat debian/common_functions}~eg' < debian/clamav-freshclam.init.in > debian/clamav-freshclam.init
+	perl -pe 's~#COMMON-FUNCTIONS#~qx{cat debian/common_functions}~eg' < debian/clamav-freshclam.config.in > debian/clamav-freshclam.config
+	perl -pe 's~#COMMON-FUNCTIONS#~qx{cat debian/common_functions}~eg' < debian/clamav-freshclam.postinst.in > debian/clamav-freshclam.postinst
+	perl -pe 's~#COMMON-FUNCTIONS#~qx{cat debian/common_functions}~eg' < debian/clamav-freshclam.prerm.in > debian/clamav-freshclam.prerm
+
+override_dh_auto_build-indep: clamav_build-indep
+	# Build architecture-independent files.
+	dh_auto_build -i -- -C unit_tests/input
+	cd obj-$(DEB_BUILD_GNU_TYPE) && $(MAKE) -f docs/CMakeFiles/doxygen.dir/build.make docs/CMakeFiles/doxygen.dir/build
+
+override_dh_auto_build-arch: clamav_build-arch
+	# Build architecture-dependent files.
+	dh_auto_build -a --
+
+override_dh_auto_test-arch:
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+	dh_auto_test
+endif
+
+override_dh_auto_test-indep:
+
+override_dh_auto_install-indep:
+
+override_dh_install:
+# clamonacc is only built on linux architectures
+ifneq (linux, $(DEB_HOST_ARCH_OS))
+	grep -v 'clamonacc' debian/clamav-daemon.install > debian/clamav-daemon.install.$(DEB_HOST_ARCH_OS)
+	grep -v 'clamonacc' debian/clamav-daemon.manpages > debian/clamav-daemon.manpages.$(DEB_HOST_ARCH_OS)
+endif
+	dh_install
+	dh_apparmor -pclamav-freshclam --profile-name=usr.bin.freshclam
+	dh_apparmor -pclamav-daemon --profile-name=usr.sbin.clamd
+
+override_dh_installinit:
+	dh_installinit -pclamav-daemon
+	# Don't change the postinst/postrm scripts for clamav-freshclam, as they need non-standard code.
+	dh_installinit -pclamav-freshclam --noscripts
+	dh_installinit -pclamav-milter
+
+# Don't compress the example configuration files.
+override_dh_compress:
+	dh_compress -Xexamples
+
+override_dh_installsystemd:
+ifneq (linux, $(DEB_HOST_ARCH_OS))
+	dh_installsystemd --name clamav-clamonacc --no-enable --no-start
+endif
+	dh_installsystemd --name clamav-daemon

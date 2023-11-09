@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+#COMMON-FUNCTIONS#
+
+invoke-rc.d clamav-freshclam stop || true
+#DEBHELPER#
+exit 0

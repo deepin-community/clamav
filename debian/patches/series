@@ -1,0 +1,10 @@
+Change-paths-in-sample-conf-file-to-match-Debian.patch
+cargo-Remove-windows-referenfes.patch
+libclamav-Sort-libclamav.map-and-libfreshclam.map.patch
+libclamav-Add-missing-symbols.patch
+Add-a-version-script-for-libclamav-and-libfreshclam.patch
+libclamav-pe-Use-endian-wrapper-in-more-places.patch
+Add-an-option-to-avoid-setting-RPATH-on-unix-systems.patch
+libclamav-Use-OpenSSL-BN-instead-tomfastmath.patch
+Remove-bundled-tomfastmath-library.patch
+Freshclam-remove-curl-result-warning.patch
