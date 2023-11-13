@@ -1,22 +1,982 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: template-repository
-Source: https://github.com/deepin-community/template-repository
+Upstream-Name: ClamAV
+Upstream-Contact: clamav-devel@lists.clamav.net
+Source: https://github.com/vrtadmin/clamav-devel
+Comment:
+ Due to license incompatibilities the libclamunrar code is split from the
+ upstream tarball into a libclamunrar tarball.
+ .
+ The excluded files below just make the tarball unnecessarily large, or
+ interfere with the version management.  For llvm, we use the system version.
+Files-Excluded:
+ win32/*
+ libclammspack/*
+ libclamunrar/*
+ libclamav/tomsfastmath/*
+ libclamav_rust/.cargo/vendor/winapi/*
+ libclamav_rust/.cargo/vendor/winapi-i686-pc-windows-gnu/*
+ libclamav_rust/.cargo/vendor/winapi-util/*
+ libclamav_rust/.cargo/vendor/winapi-x86_64-pc-windows-gnu/*
+ libclamav_rust/.cargo/vendor/libloading/tests/nagisa*
+ docs/html/*
 
 Files: *
-Copyright: 2023 Tsic404 <liuheng@deepin.org>
-License: GPL-2+
- This package is free software; you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation; either version 2 of the License, or
- (at your option) any later version.
+Copyright:
+ 1998-2015, Sourcefire, Inc.
+ 2002-2007, Tomasz Kojm <tkojm@clamav.net>
+ 2006, Sensory Networks, Inc
+ 2007-2015, Cisco Systems, Inc
+ 2014-2018, Cisco and/or its affiliates
+License: GPL-2
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License version 2 as
+ published by the Free Software Foundation.
  .
- This package is distributed in the hope that it will be useful,
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+Comment:
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ MA 02110-1301, USA.
+ .
+ On Debian systems, the full text of the GNU General Public License
+ version 2 can be found in the file `/usr/share/common-licenses/GPL-2'.
+
+Files:
+ libclamav/crypto.c
+ libclamav/pdfng.c
+ libclamav/xdp.c
+ libclamav/xdp.h
+Copyright:
+ 2014, 2017-2018 Cisco and/or its affiliates
+License: GPL-2 with OpenSSL exception
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License version 2 as
+ published by the Free Software Foundation.
+ .
+ This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
  .
- You should have received a copy of the GNU General Public License
- along with this program. If not, see <https://www.gnu.org/licenses/>
+ In addition, as a special exception, the copyright holders give
+ permission to link the code of portions of this program with the
+ OpenSSL library under certain conditions as described in each
+ individual source file, and distribute linked combinations
+ including the two.
  .
- On Debian systems, the complete text of the GNU General
- Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
+ You must obey the GNU General Public License in all respects
+ for all of the code used other than OpenSSL.  If you modify
+ file(s) with this exception, you may extend this exception to your
+ version of the file(s), but you are not obligated to do so.  If you
+ do not wish to do so, delete this exception statement from your
+ version.  If you delete this exception statement from all source
+ files in the program, then also delete it here.
+Comment:
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ MA 02110-1301, USA.
+ .
+ On Debian systems, the full text of the GNU General Public License
+ version 2 can be found in the file `/usr/share/common-licenses/GPL-2'.
+
+Files:
+ clamd/server.h
+ clamd/server-th.c
+ clamd/thrmgr.c
+ clamd/thrmgr.h
+ freshclam/execute.c
+ freshclam/execute.h
+ libfreshclam/dns.c
+ libfreshclam/dns.h
+ sigtool/vba.c
+ sigtool/vba.h
+Copyright:
+ 2002-2013, Tomasz Kojm <tkojm@clamav.net>
+ 2004 Trog <trog@uncon.org>
+ 2006, Everton da Silva Marques <everton.marques@gmail.com>
+ 2006, Sensory Networks, Inc
+ 2007-2013, Sourcefire, Inc.
+ 2014, Cisco Systems, Inc.
+License: GPL-2+
+Comment:
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ MA 02110-1301, USA.
+ .
+ On Debian systems, the full text of the GNU General Public License
+ version 2 can be found in the file `/usr/share/common-licenses/GPL-2'.
+
+Files:
+ debian/*
+Copyright:
+ 2004, Stephen Gran <sgran@debian.org>
+License: GPL-2+
+Comment:
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ MA 02110-1301, USA.
+ .
+ On Debian systems, the full text of the GNU General Public License
+ version 2 can be found in the file `/usr/share/common-licenses/GPL-2'.
+
+Files:
+ libclamav/libmspack.c
+ libclamav/libmspack.h
+ libclamunrar_iface/unrar_iface.cpp
+ libclamunrar_iface/unrar_iface.h
+Copyright:
+ 2003-2004 Stuart Caie
+ 2007-2013, Sourcefire, Inc.
+License: LGPL-2.1
+
+Files:
+ clamonacc/misc/fts.c
+ clamonacc/misc/priv_fts.h
+Copyright:
+ 1990, 1993-1994, The Regents of the University of California.
+ 1994-2015, Free Software Foundation, Inc.
+License: LGPL-2.1 and BSD-3-clause
+
+Files:
+ common/getopt.c
+ common/getopt.h
+Copyright:
+ 1997, 2000-2002, 2006, Benjamin Sittler
+License: Expat
+
+Files:
+ libclamav/bcfeatures.h
+ libclamav/bytecode_api_decl.c
+ libclamav/bytecode_api.h
+ libclamav/bytecode_api_impl.h
+ libclamav/bytecode_detect.h
+ libclamav/bytecode_hooks.h
+Copyright:
+ 2009-2010, Sourcefire, Inc.
+License: BSD-2-clause
+
+Files:
+ libclamav/textdet.c
+Copyright:
+ 1986-1995, Ian F. Darwin
+ 2008-2010, Sourcefire, Inc.
+License: BSD-2-clause
+
+Files:
+ libclamav/qsort.c
+ libclamav/queue.h
+Copyright:
+ 1991-1993, The Regents of the University of California.
+License: BSD-3-clause
+
+Files:
+ libclamav/regex/*
+Copyright:
+ 1992-1994, Henry Spencer
+ 1992-1994, The Regents of the University of California.
+License: BSD-3-clause
+
+Files:
+ libclamav/swf.c
+ libclamav/swf.h
+Copyright:
+ 2001, Opaque Industries
+ 2002-2007, Igor Kogan
+ 2005, Wang Zhen
+License: BSD-3-clause
+
+Files:
+ libclamav/inffixed64.h
+ libclamav/inflate64.c
+ libclamav/inflate64.h
+ libclamav/inflate64_priv.h
+ libclamav/nsis/nsis_zlib.h
+Copyright:
+ 1995-2005, Jean-loup Gailly
+ 1995-2005, Mark Adler
+License: Zlib
+
+Files:
+ libclamav/nsis/infblock.c
+ libclamav/nsis/nsis_zutil.h
+Copyright:
+ 1999-2007, Nullsoft and Contributors
+ 1995-1998, Jean-loup Gailly
+License: Zlib
+Comment:
+ These files do not contain above license in full, but mention that they
+ have been derived from zlib.
+
+Files:
+ libclamav/regex/strlcpy.c
+ libclamav/strlcat.c
+Copyright:
+ 1998, Todd C. Miller <Todd.Miller@courtesan.com>
+License: ISC
+ Permission to use, copy, modify, and distribute this software for any
+ purpose with or without fee is hereby granted, provided that the above
+ copyright notice and this permission notice appear in all copies.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+Files:
+ libclamav/nsis/bzlib.c
+ libclamav/nsis/bzlib_private.h
+ libclamav/nsis/nsis_bzlib.h
+Copyright:
+ 1996-2006, Julian Seward <jseward@bzip.org>
+License: nsis-bzip2
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ .
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ .
+ 2. The origin of this software must not be misrepresented; you must
+    not claim that you wrote the original software.  If you use this
+    software in a product, an acknowledgment in the product
+    documentation would be appreciated but is not required.
+ .
+ 3. Altered source versions must be plainly marked as such, and must
+    not be misrepresented as being the original software.
+ .
+ 4. The name of the author may not be used to endorse or promote
+    products derived from this software without specific prior written
+    permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS
+ OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+ DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+Files:
+ libclamav/is_tar.c
+Copyright:
+ 1985, John Gilmore
+License: public-domain~1
+ Stolen (by the author of the file utility!) from the public domain tar program:
+ Public Domain version written 26 Aug 1985 John Gilmore (ihnp4!hoptoad!gnu).
+
+Files:
+ libclamav/7z/*
+Copyright:
+ 2008-2010, Igor Pavlov
+License: public-domain~3
+ LZMA SDK is written and placed in the public domain by Igor Pavlov.
+Comment:
+ See COPYING.lzma.
+
+Files: libclamav/lzw/*
+Copyright:
+ 1988-1997 Sam Leffler
+ 1991-1997 Silicon Graphics, Inc
+ 2016 Cisco and/or its affiliates. All rights reserved.
+License: LZW
+ Permission to use, copy, modify, distribute, and sell this software and
+ its documentation for any purpose is hereby granted without fee, provided
+ that (i) the above copyright notices and this permission notice appear in
+ all copies of the software and related documentation, and (ii) the names of
+ Sam Leffler and Silicon Graphics may not be used in any advertising or
+ publicity relating to the software without the specific, prior written
+ permission of Sam Leffler and Silicon Graphics.
+ .
+ THE SOFTWARE IS PROVIDED "AS-IS" AND WITHOUT WARRANTY OF ANY KIND,
+ EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY
+ WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+ .
+ IN NO EVENT SHALL SAM LEFFLER OR SILICON GRAPHICS BE LIABLE FOR
+ ANY SPECIAL, INCIDENTAL, INDIRECT OR CONSEQUENTIAL DAMAGES OF ANY KIND,
+ OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
+ WHETHER OR NOT ADVISED OF THE POSSIBILITY OF DAMAGE, AND ON ANY THEORY OF
+ LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
+ OF THIS SOFTWARE.
+
+Files:
+ libclamav/yara_*
+Copyright:
+ Copyright (C) 2014 Cisco Systems, Inc. and/or its affiliates. All rights reserved.
+ Copyright (c) 2013. The YARA Authors. All Rights Reserved.
+License: Apache-2.0 with GPL exception
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ .
+    http://www.apache.org/licenses/LICENSE-2.0
+ .
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+Comment:
+ See COPYING.YARA. The GPL exception has been granted by upstream in
+ https://bugzilla.clamav.net/show_bug.cgi?id=11336:
+  Steven Morgan 2015-07-21 23:02:01 CEST
+  The Apache 2 license notification for YARA is in the file COPYING.YARA,
+  similar to what we do for bzip2 and at least 9 other third party components
+  included in ClamAV. We also maintain the Apache v2 license header within the
+  YARA source code files as well as noting that the file is modified. We also
+  intend to write a GPL exclusion, as is done for OpenSSL. We believe these to
+  be sufficient indicators of which licenses apply to which source files.
+ .
+ On Debian systems, the full text of the Apache License, Version 2.0 can be
+ found in the file `/usr/share/common-licenses/Apache-2.0'.
+
+
+Files:
+ libclamav/yara_grammar.h
+Copyright:
+ 1984, 1989-1990, 2000-2011, Free Software Foundation, Inc.
+License: GPL-3+ with Bison exception
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ As a special exception, you may create a larger work that contains
+ part or all of the Bison parser skeleton and distribute that work
+ under terms of your choice, so long as that work isn't itself a
+ parser generator using the skeleton or a modified version thereof
+ as a parser skeleton.  Alternatively, if you modify or redistribute
+ the parser skeleton itself, you may (at your option) remove this
+ special exception, which will cause the skeleton and the resulting
+ Bison output files to be licensed under the GNU General Public
+ License without this special exception.
+Comment:
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ MA 02110-1301, USA.
+ .
+ On Debian systems, the full text of the GNU General Public License
+ version 3 can be found in the file `/usr/share/common-licenses/GPL-3.
+
+# Copyright/License information for vendored Rust crates used for now (to be removed before Bookworm release)
+
+Files: libclamav_rust/.cargo/vendor/adler/*
+Copyright: Jonas Schievink <jonasschievink@gmail.com>
+License: 0BSD-MIT-Apache-2.0
+
+Files: libclamav_rust/.cargo/vendor/aho-corasick/*
+ libclamav_rust/.cargo/vendor/byteorder/*
+ libclamav_rust/.cargo/vendor/memchr/*
+ libclamav_rust/.cargo/vendor/termcolor/*
+Copyright: 2015, Andrew Gallant
+License: Apache-2.0-Expat
+
+Files: libclamav_rust/.cargo/vendor/ansi_term/*
+Copyright: 2014, Benjamin Sago
+License: Expat
+
+Files: libclamav_rust/.cargo/vendor/atty/*
+Copyright: 2015-2019, Doug Tangren
+License: Expat
+
+Files: libclamav_rust/.cargo/vendor/autocfg/*
+Copyright: 2018, Josh Stone
+License: Expat
+
+Files: libclamav_rust/.cargo/vendor/bindgen/*
+Copyright: 2013, Jyun-Yan You
+License: BSD-3-clause
+
+Files: libclamav_rust/.cargo/vendor/bit_field/*
+Copyright: 2016, Philipp Oppermann
+License: Expat
+
+Files: libclamav_rust/.cargo/vendor/heck/*
+ libclamav_rust/.cargo/vendor/lazy_static/*
+ libclamav_rust/.cargo/vendor/libc/*
+ libclamav_rust/.cargo/vendor/lock_api/*
+ libclamav_rust/.cargo/vendor/peeking_take_while/*
+ libclamav_rust/.cargo/vendor/rayon-core/*
+ libclamav_rust/.cargo/vendor/rayon/*
+ libclamav_rust/.cargo/vendor/regex-syntax/*
+ libclamav_rust/.cargo/vendor/regex/*
+Copyright: 2010, The Rust Project Developers
+  2014, The Rust Project Developers
+  2014-2020, The Rust Project Developers
+  2015, The Rust Project Developers
+  2016, The Rust Project Developers
+License: Expat
+
+Files: libclamav_rust/.cargo/vendor/block-buffer/*
+ libclamav_rust/.cargo/vendor/cpufeatures/*
+Copyright: 2018-2019, The RustCrypto Project Developers
+  2020, The RustCrypto Project Developers
+License: Expat
+
+Files: libclamav_rust/.cargo/vendor/flate2/*
+ libclamav_rust/.cargo/vendor/js-sys/*
+ libclamav_rust/.cargo/vendor/proc-macro2/*
+ libclamav_rust/.cargo/vendor/toml/*
+ libclamav_rust/.cargo/vendor/wasm-bindgen-backend/*
+ libclamav_rust/.cargo/vendor/wasm-bindgen-macro-support/*
+ libclamav_rust/.cargo/vendor/wasm-bindgen-macro/*
+ libclamav_rust/.cargo/vendor/wasm-bindgen-shared/*
+ libclamav_rust/.cargo/vendor/wasm-bindgen/*
+Copyright: 2014, Alex Crichton
+License: Apache-2.0-Expat
+
+Files: libclamav_rust/.cargo/vendor/bitflags/*
+ libclamav_rust/.cargo/vendor/cexpr/*
+ libclamav_rust/.cargo/vendor/cfg-if/*
+ libclamav_rust/.cargo/vendor/either/*
+ libclamav_rust/.cargo/vendor/env_logger/*
+ libclamav_rust/.cargo/vendor/fastrand/*
+ libclamav_rust/.cargo/vendor/flume/*
+ libclamav_rust/.cargo/vendor/glob/*
+ libclamav_rust/.cargo/vendor/half/*
+ libclamav_rust/.cargo/vendor/hermit-abi/*
+ libclamav_rust/.cargo/vendor/indexmap/*
+ libclamav_rust/.cargo/vendor/itoa/*
+ libclamav_rust/.cargo/vendor/minimal-lexical/*
+ libclamav_rust/.cargo/vendor/log/*
+ libclamav_rust/.cargo/vendor/num_cpus/*
+ libclamav_rust/.cargo/vendor/num-complex/*
+ libclamav_rust/.cargo/vendor/num-integer/*
+ libclamav_rust/.cargo/vendor/num-rational/*
+ libclamav_rust/.cargo/vendor/num-traits/*
+ libclamav_rust/.cargo/vendor/once_cell/*
+ libclamav_rust/.cargo/vendor/pin-project-internal/*
+ libclamav_rust/.cargo/vendor/pin-project/*
+ libclamav_rust/.cargo/vendor/quote/*
+ libclamav_rust/.cargo/vendor/rustc-hash/*
+ libclamav_rust/.cargo/vendor/serde/*
+ libclamav_rust/.cargo/vendor/serde_derive/*
+ libclamav_rust/.cargo/vendor/serde_json/*
+ libclamav_rust/.cargo/vendor/smallvec/*
+ libclamav_rust/.cargo/vendor/spin/*
+ libclamav_rust/.cargo/vendor/syn/*
+ libclamav_rust/.cargo/vendor/textwrap/*
+ libclamav_rust/.cargo/vendor/tempfile/*
+ libclamav_rust/.cargo/vendor/thiserror-impl/*
+ libclamav_rust/.cargo/vendor/thiserror/*
+ libclamav_rust/.cargo/vendor/threadpool/*
+ libclamav_rust/.cargo/vendor/unicode-ident/*
+ libclamav_rust/.cargo/vendor/unicode-segmentation/*
+ libclamav_rust/.cargo/vendor/unicode-width/*
+ libclamav_rust/.cargo/vendor/vec_map/*
+ libclamav_rust/.cargo/vendor/wasi/*
+ libclamav_rust/.cargo/vendor/wasm-bindgen-macro/ui-tests/update-*
+Copyright: 2011-2015, The Rust Project Developers.
+  2011-2022, The Rust Project Developers.
+  2012-2014, The Rust Project Developers.
+  2012-2015, The Rust Project Developers.
+  2012-2017, The Rust Project Developers.
+  2012-2018, The Rust Project Developers.
+  2012-2022, The Rust Project Developers.
+  2013, The Rust Project Developers.
+  2013-2014, The Rust Project Developers.
+  2014, The Rust Project Developers.
+  2014-2015, The Rust Project Developers.
+  2015, The Rust Project Developers.
+  2018, The Rust Project Developers.
+License: Apache-2.0-Expat
+
+Files: libclamav_rust/.cargo/vendor/bumpalo/*
+Copyright: 2019, Nick Fitzgerald
+License: Expat
+
+Files: libclamav_rust/.cargo/vendor/bytemuck/*
+Copyright: 2019, Daniel "Lokathor" Gee.
+License: 0BSD-MIT-Apache-2.0-Zlib
+
+Files: libclamav_rust/.cargo/vendor/cbindgen/*
+Copyright: NONE
+License: MPL-2.0
+
+Files: libclamav_rust/.cargo/vendor/clang-sys/*
+Copyright: NONE
+License: Apache-2.0
+
+Files: libclamav_rust/.cargo/vendor/clap/*
+Copyright: 2015-2016, Kevin B. Knapp
+License: Expat
+
+Files: libclamav_rust/.cargo/vendor/color_quant/*
+ libclamav_rust/.cargo/vendor/image/*
+ libclamav_rust/.cargo/vendor/tiff/*
+Copyright: 2014, PistonDevelopers
+  2016, PistonDevelopers
+  2018, PistonDevelopers
+License: Expat
+
+Files: libclamav_rust/.cargo/vendor/crc32fast/*
+Copyright: 2018, Sam Rijs, Alex Crichton and contributors
+License: Expat
+
+Files: libclamav_rust/.cargo/vendor/crossbeam-channel/*
+ libclamav_rust/.cargo/vendor/crossbeam-deque/*
+ libclamav_rust/.cargo/vendor/crossbeam-epoch/*
+ libclamav_rust/.cargo/vendor/crossbeam-utils/*
+Copyright: 2019, The Crossbeam Project Developers
+License: Expat
+
+Files: libclamav_rust/.cargo/vendor/crunchy/*
+Copyright: NONE
+License: Expat
+
+Files: libclamav_rust/.cargo/vendor/crypto-common/*
+Copyright: 2021, RustCrypto Developers
+License: Expat
+
+Files: libclamav_rust/.cargo/vendor/digest/*
+Copyright: 2017, Artyom Pavlov
+License: Apache-2.0-Expat
+
+Files: libclamav_rust/.cargo/vendor/exr/*
+Copyright: Contributors to the OpenEXR Project.
+License: BSD-3-clause
+
+Files: libclamav_rust/.cargo/vendor/futures-core/*
+ libclamav_rust/.cargo/vendor/futures-sink/*
+Copyright: 2016, Alex Crichton
+  2017, The Tokio Authors
+License: Apache-2.0-Expat
+
+Files: libclamav_rust/.cargo/vendor/generic-array/*
+Copyright: 2015, BartÅomiej KamiÅski
+License: Expat
+
+Files: libclamav_rust/.cargo/vendor/getrandom/*
+Copyright: 2014, The Rust Project Developers
+  2018, Developers of the Rand project
+  2019, Developers of the Rand project.
+  2021, Developers of the Rand project.
+License: Apache-2.0-Expat
+
+Files: libclamav_rust/.cargo/vendor/gif/*
+ libclamav_rust/.cargo/vendor/png/*
+Copyright: 2015, nwin
+License: Apache-2.0-Expat
+
+Files: libclamav_rust/.cargo/vendor/hashbrown/*
+Copyright: 2016, Amanieu d'Antras
+License: Apache-2.0-Expat
+
+Files: libclamav_rust/.cargo/vendor/hex/*
+Copyright: 2013-2014, The Rust Project Developers.
+  2015-2020, The rust-hex Developers
+License: Apache-2.0-Expat
+
+Files: libclamav_rust/.cargo/vendor/humantime/*
+Copyright: 2016, The humantime Developers
+  Copyright (c) 2016 Pyfisch
+  Copyright © 2005-2013 Rich Felker
+License: Apache-2.0-Expat
+
+Files: libclamav_rust/.cargo/vendor/instant/*
+Copyright: 2019, Sébastien Crozet
+License: BSD-3-clause
+
+Files: libclamav_rust/.cargo/vendor/jpeg-decoder/*
+Copyright: 2016, The jpeg-decoder Developers
+License: Apache-2.0-Expat
+
+Files: libclamav_rust/.cargo/vendor/lazycell/*
+Copyright: 2014, The Rust Project Developers
+  2016-2020, Nikita Pekin and the lazycell contributors
+License: Apache-2.0-Expat
+
+Files: libclamav_rust/.cargo/vendor/lebe/*
+Copyright: 2022, Contributors to the lebe Project.
+License: BSD-3-clause
+
+Files: libclamav_rust/.cargo/vendor/libloading/*
+Copyright: 2015, Simonas Kazlauskas
+License: ISC
+
+Files: libclamav_rust/.cargo/vendor/memoffset/*
+Copyright: 2017, Gilad Naaman
+  2020, Gilad Naaman, Ralf Jung
+License: Expat
+
+Files: libclamav_rust/.cargo/vendor/miniz_oxide-0.5.4/*
+ libclamav_rust/.cargo/vendor/miniz_oxide/*
+Copyright: 2017, Frommi
+  2020, Frommi
+License: Apache-2.0-Expat or Zlib
+
+Files: libclamav_rust/.cargo/vendor/nanorand/*
+Copyright: 2021, lucy
+  2022, lucy
+License: Zlib
+
+Files: libclamav_rust/.cargo/vendor/nom/*
+Copyright: 2014-2019, Geoffroy Couprie
+License: Expat
+
+Files: libclamav_rust/.cargo/vendor/primal-check/*
+Copyright: 2014, Huon Wilson
+License: Apache-2.0-Expat
+
+Files: libclamav_rust/.cargo/vendor/redox_syscall/*
+Copyright: 2017, Redox OS Developers
+License: Expat
+
+Files: libclamav_rust/.cargo/vendor/remove_dir_all/*
+Copyright: 2017, Aaron Power
+License: Apache-2.0-Expat
+
+Files: libclamav_rust/.cargo/vendor/rustdct/*
+ libclamav_rust/.cargo/vendor/rustfft/*
+ libclamav_rust/.cargo/vendor/strength_reduce/*
+Copyright: 2015, The RustFFT Developers
+License: Apache-2.0-Expat
+
+Files: libclamav_rust/.cargo/vendor/ryu/*
+Copyright: 2018, Ulf Adams
+License: Apache-2.0-BSL-1.0
+
+Files: libclamav_rust/.cargo/vendor/scoped_threadpool/*
+Copyright: 2015, Marvin Löbel
+License: Expat
+
+Files: libclamav_rust/.cargo/vendor/scopeguard/*
+Copyright: 2016-2019, Ulrik Sverdrup "bluss" and scopeguard developers
+License: Apache-2.0-Expat
+
+Files: libclamav_rust/.cargo/vendor/sha2/*
+Copyright: 2006-2009, Graydon Hoare
+  2009-2013, Mozilla Foundation
+  2016, Artyom Pavlov
+License: Apache-2.0-Expat
+
+Files: libclamav_rust/.cargo/vendor/shlex/*
+Copyright: 2015, Nicholas Allegra (comex).
+License: Apache-2.0-Expat
+
+Files: libclamav_rust/.cargo/vendor/strsim/*
+Copyright: 2015, Danny Guo
+  2016, Titus Wormer <tituswormer@gmail.com>
+License: Expat
+
+Files: libclamav_rust/.cargo/vendor/transpose/*
+Copyright: 2022, The transpose Developers
+License: Apache-2.0-Expat
+
+Files: libclamav_rust/.cargo/vendor/typenum/*
+Copyright: 2014, Paho Lurie-Gregg
+License: Apache-2.0-Expat
+
+Files: libclamav_rust/.cargo/vendor/version_check/*
+Copyright: 2017-2018, Sergio Benitez
+License: Apache-2.0-Expat
+
+Files: libclamav_rust/.cargo/vendor/weezl/*
+Copyright: HeroicKatora 2020
+License: Apache-2.0-Expat
+
+Files: libclamav_rust/.cargo/vendor/which/*
+Copyright: 2015, fangyuanziti
+License: Expat
+
+License: Apache-2.0
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ .
+        https://www.apache.org/licenses/LICENSE-2.0
+ .
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ .
+ On Debian systems, the full text of the Apache License, Version 2.0 can be
+ found in the file `/usr/share/common-licenses/Apache-2.0'.
+
+License: Apache-2.0-Expat
+ LICENSE-APACHE
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ .
+        https://www.apache.org/licenses/LICENSE-2.0
+ .
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ .
+ On Debian systems, the full text of the Apache License, Version 2.0 can be
+ found in the file `/usr/share/common-licenses/Apache-2.0'.
+ .
+ LICENSE-EXPAT
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to
+ deal in the Software without restriction, including without limitation the
+ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+ sell copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+ X CONSORTIUM BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+ AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNEC-
+ TION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+License: 0BSD-MIT-Apache-2.0
+ LICENSE-0BSD
+ Permission to use, copy, modify, and/or distribute this software for
+ any purpose with or without fee is hereby granted.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN
+ AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT
+ OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ .
+ LICENSE-MIT
+ Permission is hereby granted, free of charge, to any
+ person obtaining a copy of this software and associated
+ documentation files (the "Software"), to deal in the
+ Software without restriction, including without
+ limitation the rights to use, copy, modify, merge,
+ publish, distribute, sublicense, and/or sell copies of
+ the Software, and to permit persons to whom the Software
+ is furnished to do so, subject to the following
+ conditions:
+ .
+ The above copyright notice and this permission notice
+ shall be included in all copies or substantial portions
+ of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
+ ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
+ TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+ PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT
+ SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ DEALINGS IN THE SOFTWARE.
+ .
+ LICENSE-APACHE
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ .
+        https://www.apache.org/licenses/LICENSE-2.0
+ .
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ .
+ On Debian systems, the full text of the Apache License, Version 2.0 can be
+ found in the file `/usr/share/common-licenses/Apache-2.0'.
+
+License: 0BSD-MIT-Apache-2.0-Zlib
+ For 0BSD, MIT, and Apache license, see 0BSD-MIT-Apache-2.0
+ For Zlib, see Zlib
+
+License: ISC
+ Permission to use, copy, modify, and/or distribute this software for any purpose with or without
+ fee is hereby granted, provided that the above copyright notice and this permission notice appear
+ in all copies.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS
+ SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE
+ AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,
+ NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
+ THIS SOFTWARE.
+
+License: MPL-2.0
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ .
+ On Debian systems, the full text of the Mozilla Public License, Version 2.0
+ can be found in the file `/usr/share/common-licenses/MPL-2.0'.
+
+License: GPL-2+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+License: Apache-2.0-BSL-1.0
+ LICENSE-APACHE
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ .
+        https://www.apache.org/licenses/LICENSE-2.0
+ .
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ .
+ On Debian systems, the full text of the Apache License, Version 2.0 can be
+ found in the file `/usr/share/common-licenses/Apache-2.0'.
+ .
+ Boost Software License - Version 1.0 - August 17th, 2003
+ .
+ Permission is hereby granted, free of charge, to any person or organization
+ obtaining a copy of the software and accompanying documentation covered by
+ this license (the "Software") to use, reproduce, display, distribute,
+ execute, and transmit the Software, and to prepare derivative works of the
+ Software, and to permit third-parties to whom the Software is furnished to
+ do so, all subject to the following:
+ .
+ The copyright notices in the Software and this entire statement, including
+ the above license grant, this restriction and the following disclaimer,
+ must be included in all copies of the Software, in whole or in part, and
+ all derivative works of the Software, unless such copies or derivative
+ works are solely in the form of machine-executable object code generated by
+ a source language processor.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT. IN NO EVENT
+ SHALL THE COPYRIGHT HOLDERS OR ANYONE DISTRIBUTING THE SOFTWARE BE LIABLE
+ FOR ANY DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT OR OTHERWISE,
+ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ DEALINGS IN THE SOFTWARE.
+
+License: LGPL-2.1
+ This library is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License version 2.1 as published by the Free Software Foundation.
+ .
+ This library is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+Comment:
+ You should have received a copy of the GNU Lesser General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ MA 02110-1301, USA.
+ .
+ On Debian systems, the full text of the GNU Lesser General Public License
+ version 2.1 can be found in the file `/usr/share/common-licenses/LGPL-2.1'.
+
+License: Expat
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to
+ deal in the Software without restriction, including without limitation the
+ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+ sell copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+ X CONSORTIUM BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+ AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNEC-
+ TION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+License: BSD-2-clause
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+ ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ SUCH DAMAGE.
+
+License: BSD-3-clause
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+ 3. Neither the name of the University nor the names of its contributors
+    may be used to endorse or promote products derived from this software
+    without specific prior written permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+ ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ SUCH DAMAGE.
+
+License: Zlib
+ This software is provided 'as-is', without any express or implied
+ warranty.  In no event will the authors be held liable for any damages
+ arising from the use of this software.
+ .
+ Permission is granted to anyone to use this software for any purpose,
+ including commercial applications, and to alter it and redistribute it
+ freely, subject to the following restrictions:
+ .
+ 1. The origin of this software must not be misrepresented; you must not
+    claim that you wrote the original software. If you use this software
+    in a product, an acknowledgment in the product documentation would be
+    appreciated but is not required.
+ 2. Altered source versions must be plainly marked as such, and must not be
+    misrepresented as being the original software.
+ 3. This notice may not be removed or altered from any source distribution.
+

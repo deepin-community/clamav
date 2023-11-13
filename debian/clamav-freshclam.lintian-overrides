@@ -1,0 +1,5 @@
+# This is not used by the maintainer script, only echoed to the cron job.
+clamav-freshclam: command-with-path-in-maintainer-script /usr/bin/freshclam (in test syntax) [postinst:402]
+clamav-freshclam: command-with-path-in-maintainer-script /usr/bin/freshclam (plain script) [postinst:402]
+# Part of an if then statement, so both never get called.
+clamav-freshclam: duplicate-updaterc.d-calls-in-postinst clamav-freshclam [postinst:627]

@@ -1,0 +1,62 @@
+From da4765a964cb46ce9990305676a449bee0c4ff26 Mon Sep 17 00:00:00 2001
+From: Sebastian Andrzej Siewior <sebastian@breakpoint.cc>
+Date: Mon, 2 Jan 2023 15:51:42 +0100
+Subject: Add a version script for libclamav and libfreshclam
+
+Without a version script all symbols will be exported which are public
+within the libclamav library. This is true for the officially exported
+symbols as well as all the public symbols which are used within
+libclamav such as the rust symbols or the included libs like 7z and its
+XZ_SIG symbol.
+
+There is already a .map preset to limit the exported symbols of
+libclamav and libfreshclam. Use it.
+
+Patch-Name: Add-a-version-script-for-libclamav-and-libfreshclam.patch
+Signed-off-by: Sebastian Andrzej Siewior <sebastian@breakpoint.cc>
+---
+ libclamav/CMakeLists.txt    | 5 ++++-
+ libfreshclam/CMakeLists.txt | 7 ++++++-
+ 2 files changed, 10 insertions(+), 2 deletions(-)
+
+diff --git a/libclamav/CMakeLists.txt b/libclamav/CMakeLists.txt
+index 6bc426f..f0b3fdf 100644
+--- a/libclamav/CMakeLists.txt
++++ b/libclamav/CMakeLists.txt
+@@ -505,7 +505,8 @@ if(ENABLE_SHARED_LIB)
+     add_library( clamav SHARED )
+     set_target_properties( clamav PROPERTIES
+         VERSION ${LIBCLAMAV_VERSION}
+-        SOVERSION ${LIBCLAMAV_SOVERSION} )
++        SOVERSION ${LIBCLAMAV_SOVERSION}
++        LINK_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/libclamav.map)
+     target_sources( clamav
+         PRIVATE
+             ${LIBCLAMAV_SOURCES}
+@@ -551,6 +552,8 @@ if(ENABLE_SHARED_LIB)
+                 Iconv::Iconv
+                 ${CMAKE_DL_LIBS}
+                 m )
++        set_target_properties(clamav PROPERTIES LINK_FLAGS
++                  "-Wl,--version-script='${CMAKE_CURRENT_SOURCE_DIR}/libclamav.map'")
+     endif()
+     set_target_properties( clamav PROPERTIES
+         COMPILE_FLAGS "${WARNCFLAGS}"
+diff --git a/libfreshclam/CMakeLists.txt b/libfreshclam/CMakeLists.txt
+index 97a3aae..e7dffaa 100644
+--- a/libfreshclam/CMakeLists.txt
++++ b/libfreshclam/CMakeLists.txt
+@@ -61,7 +61,12 @@ if(ENABLE_SHARED_LIB)
+     endif()
+     set_target_properties(freshclam PROPERTIES
+         COMPILE_FLAGS "${WARNCFLAGS}"
+-        VERSION ${LIBFRESHCLAM_VERSION} SOVERSION ${LIBFRESHCLAM_SOVERSION})
++        VERSION ${LIBFRESHCLAM_VERSION} SOVERSION ${LIBFRESHCLAM_SOVERSION}
++        LINK_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/libfreshclam.map)
++    if(UNIX)
++        set_target_properties(freshclam PROPERTIES LINK_FLAGS
++              "-Wl,--version-script='${CMAKE_CURRENT_SOURCE_DIR}/libfreshclam.map'")
++    endif()
+     if(WIN32)
+         install(TARGETS freshclam DESTINATION . COMPONENT libraries)
+         install(FILES $<TARGET_PDB_FILE:freshclam> DESTINATION . OPTIONAL COMPONENT libraries)

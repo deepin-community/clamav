@@ -1,0 +1,91 @@
+From 411cdfb5607f7b790379bc9fad83f61d03e0c592 Mon Sep 17 00:00:00 2001
+From: Sebastian Andrzej Siewior <sebastian@breakpoint.cc>
+Date: Fri, 6 Jan 2023 21:42:30 +0100
+Subject: libclamav/pe: Use endian wrapper in more places.
+
+A few user of VirtualAddress and Size in cli_exe_info::pe_image_data_dir
+don't use the endian wrapper while other places do. This leads to
+testsuite failures on big endian machines.
+
+Use the endian wrapper in all places across pe.c for the two members.
+
+Patch-Name: libclamav-pe-Use-endian-wrapper-in-more-places.patch
+Signed-off-by: Sebastian Andrzej Siewior <sebastian@breakpoint.cc>
+---
+ libclamav/pe.c | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
+
+diff --git a/libclamav/pe.c b/libclamav/pe.c
+index f5dcea9..19cd2d4 100644
+--- a/libclamav/pe.c
++++ b/libclamav/pe.c
+@@ -2422,22 +2422,22 @@ static cl_error_t hash_imptbl(cli_ctx *ctx, unsigned char **digest, uint32_t *im
+ 
+     /* If the PE doesn't have an import table then skip it. This is an
+      * uncommon case but can happen. */
+-    if (peinfo->dirs[1].VirtualAddress == 0 || peinfo->dirs[1].Size == 0) {
++    if (EC32(peinfo->dirs[1].VirtualAddress) == 0 || EC32(peinfo->dirs[1].Size) == 0) {
+         cli_dbgmsg("scan_pe: import table data dir does not exist (skipping .imp scanning)\n");
+         status = CL_BREAK;
+         goto done;
+     }
+ 
+     // TODO Add EC32 wrappers
+-    impoff = cli_rawaddr(peinfo->dirs[1].VirtualAddress, peinfo->sections, peinfo->nsections, &err, fsize, peinfo->hdr_size);
+-    if (err || impoff + peinfo->dirs[1].Size > fsize) {
++    impoff = cli_rawaddr(EC32(peinfo->dirs[1].VirtualAddress), peinfo->sections, peinfo->nsections, &err, fsize, peinfo->hdr_size);
++    if (err || impoff + EC32(peinfo->dirs[1].Size) > fsize) {
+         cli_dbgmsg("scan_pe: invalid rva for import table data\n");
+         status = CL_BREAK;
+         goto done;
+     }
+ 
+     // TODO Add EC32 wrapper
+-    impdes = (const struct pe_image_import_descriptor *)fmap_need_off(map, impoff, peinfo->dirs[1].Size);
++    impdes = (const struct pe_image_import_descriptor *)fmap_need_off(map, impoff, EC32(peinfo->dirs[1].Size));
+     if (impdes == NULL) {
+         cli_dbgmsg("scan_pe: failed to acquire fmap buffer\n");
+         status = CL_EREAD;
+@@ -2447,7 +2447,7 @@ static cl_error_t hash_imptbl(cli_ctx *ctx, unsigned char **digest, uint32_t *im
+ 
+     /* Safety: We can trust peinfo->dirs[1].Size only because `fmap_need_off()` (above)
+      * would have failed if the size exceeds the end of the fmap. */
+-    left = peinfo->dirs[1].Size;
++    left = EC32(peinfo->dirs[1].Size);
+ 
+     if (genhash[CLI_HASH_MD5]) {
+         hashctx[CLI_HASH_MD5] = cl_hash_init("md5");
+@@ -2546,7 +2546,7 @@ static cl_error_t hash_imptbl(cli_ctx *ctx, unsigned char **digest, uint32_t *im
+ 
+ done:
+     if (needed_impoff) {
+-        fmap_unneed_off(map, impoff, peinfo->dirs[1].Size);
++        fmap_unneed_off(map, impoff, EC32(peinfo->dirs[1].Size));
+     }
+ 
+     for (type = CLI_HASH_MD5; type < CLI_HASH_AVAIL_TYPES; type++) {
+@@ -3250,7 +3250,7 @@ int cli_scanpe(cli_ctx *ctx)
+ 
+     /* Trojan.Swizzor.Gen */
+     if (SCAN_HEURISTICS && (DCONF & PE_CONF_SWIZZOR) && peinfo->nsections > 1 && fsize > 64 * 1024 && fsize < 4 * 1024 * 1024) {
+-        if (peinfo->dirs[2].Size) {
++        if (EC32(peinfo->dirs[2].Size)) {
+             struct swizz_stats *stats = cli_calloc(1, sizeof(*stats));
+             unsigned int m            = 1000;
+             ret                       = CL_CLEAN;
+@@ -5292,13 +5292,13 @@ cl_error_t cli_peheader(fmap_t *map, struct cli_exe_info *peinfo, uint32_t opts,
+         cli_dbgmsg("EntryPoint offset: 0x%x (%d)\n", peinfo->ep, peinfo->ep);
+     }
+ 
+-    if (is_dll || peinfo->ndatadirs < 3 || !peinfo->dirs[2].Size)
++    if (is_dll || peinfo->ndatadirs < 3 || !EC32(peinfo->dirs[2].Size))
+         peinfo->res_addr = 0;
+     else
+         peinfo->res_addr = EC32(peinfo->dirs[2].VirtualAddress);
+ 
+     while (opts & CLI_PEHEADER_OPT_EXTRACT_VINFO &&
+-           peinfo->ndatadirs >= 3 && peinfo->dirs[2].Size) {
++           peinfo->ndatadirs >= 3 && EC32(peinfo->dirs[2].Size)) {
+         struct vinfo_list vlist;
+         const uint8_t *vptr, *baseptr;
+         uint32_t rva, res_sz;
