@@ -1,0 +1,6 @@
+# This is sort of a false positive, because libclamav uses the packaged zlib.
+# It still embeds a modified version of zlib to support 64 bit decompression,
+# which is not part of zlib, see #308799.
+libclamav12: embedded-library zlib [usr/lib/*/libclamav.so.12*]
+# Old syntax for ftp-master/ NEW queue.
+libclamav12: embedded-library usr/lib/*/libclamav.so.12.*: zlib

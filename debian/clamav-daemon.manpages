@@ -1,0 +1,5 @@
+debian/tmp/usr/share/man/man1/clamconf.1
+debian/tmp/usr/share/man/man1/clamdtop.1
+debian/tmp/usr/share/man/man5/clamd.conf.5
+debian/tmp/usr/share/man/man8/clamd.8
+debian/tmp/usr/share/man/man8/clamonacc.8

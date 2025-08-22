@@ -1,0 +1,9 @@
+Document: clamav
+Title: The ClamAV programming manual
+Author: Various
+Abstract: The API documentation for ClamAV, an anti-virus toolkit for Unix.
+Section: Programming/C
+
+Format: HTML
+Index: /usr/share/doc/clamav/html/index.html
+Files: /usr/share/doc/clamav/html/*

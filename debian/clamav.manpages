@@ -1,0 +1,4 @@
+debian/tmp/usr/share/man/man1/clambc.1
+debian/tmp/usr/share/man/man1/clamscan.1
+debian/tmp/usr/share/man/man1/clamsubmit.1
+debian/tmp/usr/share/man/man1/sigtool.1

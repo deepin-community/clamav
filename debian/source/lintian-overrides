@@ -1,0 +1,5 @@
+# These are actually the source form of a test file
+source-is-missing [unit_tests/input/htmlnorm_scanfiles/htmlnorm_buf.html]
+source-is-missing [unit_tests/input/htmlnorm_scanfiles/htmlnorm_encode.html]
+# The Windows binaries are packaged in clamav-testfiles as testcases for clamav
+source-contains-prebuilt-windows-binary [unit_tests/input/pe_allmatch/test.exe]
