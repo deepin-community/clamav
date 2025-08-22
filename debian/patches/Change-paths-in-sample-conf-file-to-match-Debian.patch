@@ -1,0 +1,32 @@
+From a93a4e3db36cec1e2c2d1a6ddd4c4ac6df18cbca Mon Sep 17 00:00:00 2001
+From: Scott Kitterman <scott@kitterman.com>
+Date: Mon, 10 Mar 2014 19:20:18 -0400
+Subject: Change paths in sample conf file to match Debian
+
+Patch-Name: Change-paths-in-sample-conf-file-to-match-Debian.patch
+---
+ etc/clamav-milter.conf.sample | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/etc/clamav-milter.conf.sample b/etc/clamav-milter.conf.sample
+index d073782..2e5169b 100644
+--- a/etc/clamav-milter.conf.sample
++++ b/etc/clamav-milter.conf.sample
+@@ -93,7 +93,7 @@ Example
+ #
+ # Default: no default
+ #ClamdSocket tcp:scanner.mydomain:7357
+-#ClamdSocket unix:/run/clamav/clamd.sock
++ClamdSocket unix:/run/clamav/clamd.sock
+ 
+ 
+ ##
+@@ -216,7 +216,7 @@ Example
+ # A full path is required.
+ #
+ # Default: disabled
+-#LogFile /tmp/clamav-milter.log
++#LogFile /var/log/clamav/clamav-milter.log
+ 
+ # By default the log file is locked for writing - the lock protects against
+ # running clamav-milter multiple times.

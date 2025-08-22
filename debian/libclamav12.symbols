@@ -1,0 +1,12 @@
+libclamav.so.12 libclamav12 #MINVER#
+* Build-Depends-Package: libclamav-dev
+ *@CLAMAV_0.104.0 1.2.1
+ *@CLAMAV_1.0.0 1.2.1
+ *@CLAMAV_1.1.0 1.2.1
+ *@CLAMAV_PRIVATE 1.4.3
+ *@CLAMAV_PUBLIC 1.2.1
+ cl_retflevel@CLAMAV_PUBLIC 1.4.3
+libfreshclam.so.3 libclamav12 #MINVER#
+* Build-Depends-Package: libclamav-dev
+ *@FRESHCLAM_PRIVATE 1.4.3
+ *@FRESHCLAM_PUBLIC 1.4.3

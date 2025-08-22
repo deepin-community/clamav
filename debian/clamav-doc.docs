@@ -1,0 +1,5 @@
+debian/README.Debian
+SECURITY.md
+NEWS.md
+README.md
+obj-*/docs/html/

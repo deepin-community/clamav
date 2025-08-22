@@ -1,0 +1,6 @@
+usr/bin/clamav-config
+usr/include/clamav*.h
+usr/include/libfreshclam.h
+usr/lib/*/libclamav.so
+usr/lib/*/libfreshclam.so
+usr/lib/*/pkgconfig/libclamav.pc
